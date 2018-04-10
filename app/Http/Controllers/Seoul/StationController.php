@@ -19,11 +19,11 @@ class StationController extends Controller
         $this->end_point = "http://ws.bus.go.kr/api/rest/stationinfo";
         $this->client = new Client();
     }
-	
-	/*
-	 * 정류소 정보 가져오기
-	 */
-	 
+    
+    /*
+     * 정류소 정보 가져오기
+     */
+     
     public function getStationInfo($station_name = null) 
     {
         $list = array();
@@ -35,24 +35,24 @@ class StationController extends Controller
         return json_encode($list);
     }
     
-	/*
-	 * 정류소 버스 도착 정보 가져오기
-	 *  arsId from db (int)
-	 */
-	 
-	public function getStationArrivalInfo($arsId=null, $bus=null)
+    /*
+     * 정류소 버스 도착 정보 가져오기
+     *  arsId from db (int)
+     */
+     
+    public function getStationArrivalInfo($arsId=null, $bus=null)
     {
         $response = (string)$this->client
-        			->request('get', $this->end_point.'/getStationByUid?serviceKey='.$this->key.'&arsId='.$arsId)
-        			->getBody();
+                    ->request('get', $this->end_point.'/getStationByUid?serviceKey='.$this->key.'&arsId='.$arsId)
+                    ->getBody();
         $response = simplexml_load_string($response);
         foreach ($response->msgBody->itemList as $key => $val) {
             $list[] = (array)$val;
         }
-		$key = array_search($bus, array_column($list, 'rtNm'));
-		if (is_int($key)) {
-			return $list[$key];
-		}
-		return 	false;
-	}
+        $key = array_search($bus, array_column($list, 'rtNm'));
+        if (is_int($key)) {
+            return $list[$key];
+        }
+        return     false;
+    }
 }

@@ -11,6 +11,6 @@ class BusController extends Controller
     
     public function index()
     {
-	    echo "Test";
+        echo "Test";
     }
 }

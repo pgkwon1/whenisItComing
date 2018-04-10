@@ -7,8 +7,9 @@ use App\Http\Controllers\Controller;
 
 class BusController extends Controller
 {
-	public function index(){
-		
-	}
+    public function index()
+    {
+        
+    }
     //
 }
