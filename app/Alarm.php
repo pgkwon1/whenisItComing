@@ -11,7 +11,7 @@ class Alarm extends Model
 }
 
 public function up() {
-	 Schema::create('alarm', function (Blueprint $table) {
+	Schema::create('alarm', function (Blueprint $table) {
     $table->increments('id');
     $table->string('token', 20);
     $table->string('device', 30);
