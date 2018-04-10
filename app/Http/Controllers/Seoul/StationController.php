@@ -32,7 +32,6 @@ class StationController extends Controller
         foreach ($response->msgBody->itemList as $key => $val) {
             $list[] = (array)$val;
         }
-        $this->getStationArrivalInfo($list[0]['arsId'],"화곡동 대림아파트");
         return json_encode($list);
     }
     
@@ -44,16 +43,16 @@ class StationController extends Controller
 	public function getStationArrivalInfo($arsId=null, $bus=null)
     {
         $response = (string)$this->client
-        					->request('get', $this->end_point.'/getStationByUid?serviceKey='.$this->key.'&arsId='.$arsId)
-        					->getBody();
+        			->request('get', $this->end_point.'/getStationByUid?serviceKey='.$this->key.'&arsId='.$arsId)
+        			->getBody();
         $response = simplexml_load_string($response);
         foreach ($response->msgBody->itemList as $key => $val) {
             $list[] = (array)$val;
         }
 		$key = array_search($bus, array_column($list, 'rtNm'));
 		if (is_int($key)) {
-			print_r($list[$key]);		
+			return $list[$key];
 		}
-		return $list;
+		return 	false;
 	}
 }
