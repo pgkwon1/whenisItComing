@@ -15,9 +15,15 @@ class Alarm extends Model
             $table->increments('id');
             $table->string('token', 20);
             $table->string('device', 30);
-            $table->Integer('arsId', 100);
+            $table->Integer('arsId', 20);
             $table->Integer('busRouteId', 250);
             $table->timestamps();
         });
     }
+    
+    public function down()
+    {
+        Schema::drop('alarm');
+    }
+    
 }
