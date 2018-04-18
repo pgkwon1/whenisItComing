@@ -30,6 +30,7 @@ class StationController extends Controller
     {
         $list = array();
         $response = (string)$this->client->request('get', $this->end_point.'/getStationByName?serviceKey='.$this->key.'&stSrch='.$station_name)->getBody();
+        echo $this->end_point.'/getStationByName?serviceKey='.$this->key.'&stSrch='.$station_name;
         $response = simplexml_load_string($response);
         foreach ($response->msgBody->itemList as $key => $val) {
             $list[] = (array)$val;
@@ -46,7 +47,6 @@ class StationController extends Controller
         $list = array();
         $response = (string)$this->client->request('get', $this->end_point.'/getRouteByStation?serviceKey='.$this->key.'&arsId='.$arsId)->getBody();
         $response = simplexml_load_string($response);
-        print_r("TEST");
         foreach ($response->msgBody->itemList as $key => $val) {
             $list[] = (array)$val;
         }        
