@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Response;
 
 trait ReturnHelper 
 {
-	/*
-	 *   @var array
-	 */
+    /*
+     *   @var array
+     */
     protected function returnListJson(Array $list)
     {
         if (sizeof($list) ) {
@@ -19,8 +19,8 @@ trait ReturnHelper
     }
     
     /*
-	 *   @var Int
-	 */
+    *   @var Int
+    */
     protected function returnKeyJson(Int $key, Array $list)
     {
         if (is_int($key)) {
