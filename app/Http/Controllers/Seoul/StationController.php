@@ -9,9 +9,12 @@ use App\Http\Controllers\Controller;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use App\Alarm;
+use App\Http\Traits\ReturnHelper;
 
 class StationController extends Controller
 {
+	use ReturnHelper;
+	
     private $key;
     protected $end_point;
 
@@ -30,16 +33,12 @@ class StationController extends Controller
     {
         $list = array();
         $response = (string)$this->client->request('get', $this->end_point.'/getStationByName?serviceKey='.$this->key.'&stSrch='.$station_name)->getBody();
-        echo $this->end_point.'/getStationByName?serviceKey='.$this->key.'&stSrch='.$station_name;
         $response = simplexml_load_string($response);
         foreach ($response->msgBody->itemList as $key => $val) {
             $list[] = (array)$val;
         }        
-        if (sizeof($list) ) {
-		   return Response::json(['status'=>'success', 'data'=>$list]);
-        } else {
-	       return Response::json(['status'=>'fail']);
-        }
+        
+        return $this->returnListJson($list);
     }
 
     public function getStationBusList($arsId=null)
@@ -51,11 +50,7 @@ class StationController extends Controller
             $list[] = (array)$val;
         }        
 
-        if (sizeof($list) ) {
-		   return Response::json(['status'=>'success', 'data'=>$list]);
-        } else {
-	       return Response::json(['status'=>'fail']);
-        }
+        return $this->returnListJson($list);
     }
 
     /*
@@ -73,11 +68,8 @@ class StationController extends Controller
             $list[] = (array)$val;
         }
         $key = array_search($bus, array_column($list, 'rtNm'));
-        if (is_int($key)) {
-            return Response::json(['status'=>'success', 'data'=>$list[$key]]);
-        } else {
-	        return Response::json(['status'=>'fail']);
-        }
+        
+        return $this->returnKeyJson($key, $list);
     }
 
     public function getCongestion($bus_route_id = null, $start_ord = null, $end_ord = null)
