@@ -9,7 +9,7 @@ trait ReturnHelper
     /*
      *   @var array
      */
-    protected function returnListJson(Array $list)
+    protected function returnJson(Array $list)
     {
         if (sizeof($list) ) {
 	        return Response::json(['status'=>'success', 'data'=>$list]);
@@ -17,7 +17,16 @@ trait ReturnHelper
 	        return Response::json(['status'=>'fail']);
         }
     }
-    
+
+    protected function returnBoolean(Boolean $result)
+    {
+        if ($result) {
+            return Response::json(['status'=>'success']);
+        } else {
+            return Response::json(['status'=>'fail']);
+        }
+    }
+
     /*
     *   @var Int
     */
