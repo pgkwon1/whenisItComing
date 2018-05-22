@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
-use App\Alarm;
 use App\Http\Traits\ReturnHelper;
 
 class StationController extends Controller
@@ -18,7 +17,7 @@ class StationController extends Controller
     private $key;
     protected $end_point;
 
-    public function __construct(Alarm $alarm)
+    public function __construct()
     {
         $this->key = config('key');
         $this->end_point = "http://ws.bus.go.kr/api/rest/stationinfo";
@@ -38,7 +37,7 @@ class StationController extends Controller
             $list[] = (array)$val;
         }        
         
-        return $this->returnListJson($list);
+        return $this->returnJson($list);
     }
 
     public function getStationBusList($arsId=null)
@@ -50,7 +49,7 @@ class StationController extends Controller
             $list[] = (array)$val;
         }        
 
-        return $this->returnListJson($list);
+        return $this->returnJson($list);
     }
 
     /*
