@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/alarm','AlarmController@store');
+Route::post('/update','AlarmController@update');
+Route::get('/alarm/{id}','AlarmController@show');
