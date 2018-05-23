@@ -18,7 +18,7 @@ trait ReturnHelper
         }
     }
 
-    protected function returnBoolean(Boolean $result)
+    protected function returnBoolean(Bool $result)
     {
         if ($result) {
             return Response::json(['status'=>'success']);
