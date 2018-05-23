@@ -16,5 +16,4 @@ Route::group(['namespace'=>'Seoul'],
         Route::get("/seoul/{station_name}", 'StationController@getStationInfo');
         Route::get("/seoul/{arsId}/{bus}", 'StationController@getStationArrivalInfo');
     });
-Route::resource("alarm", 'AlarmController');
 
