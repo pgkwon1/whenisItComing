@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/alarm','AlarmController@store');
 Route::post('/update','AlarmController@update');
-Route::post('/destroy/{id}','AlarmController@destory');
+Route::post('/destroy','AlarmController@destroy');
 Route::get('/alarm/{id}','AlarmController@getAlarm');
