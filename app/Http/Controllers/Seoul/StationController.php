@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Seoul;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
 use App\Http\Controllers\Controller;
@@ -23,11 +22,7 @@ class StationController extends Controller
         $this->end_point = "http://ws.bus.go.kr/api/rest/stationinfo";
         $this->client = new Client();
     }
-
-    /*
-     * 정류소 정보 가져오기
-     */
-
+    
     public function getStationInfo($station_name=null)
     {
         $list = array();
@@ -51,11 +46,6 @@ class StationController extends Controller
 
         return $this->returnJson($list);
     }
-
-    /*
-     * 정류소 버스 도착 정보 가져오기
-     *  arsId from db (int)
-     */
 
     public function getStationArrivalInfo($arsId = null, $bus = null)
     {
