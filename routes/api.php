@@ -21,11 +21,11 @@ Route::group(['namespace'=>'Seoul'],
     function() {
         Route::get("/seoul/list/{arsId}", 'StationController@getStationBusList');
         Route::get("/seoul/{station_name}", 'StationController@getStationInfo');
-        Route::get("/seoul/{arsId}/{bus}", 'StationController@getStationArrivalInfo');
+        Route::get("/seoul/{arsId}/{bus}", 'StationController@getArrivalInfo');
 });
 
 Route::post('/alarm','AlarmController@store');
 Route::post('/update','AlarmController@update');
-Route::post('/destroy','AlarmController@destroy');
-Route::get('/alarm/{id}','AlarmController@getAlarm');
-Route::get('/list/{device_id}','AlarmController@getAlarm');
+Route::delete('/destroy/{id}','AlarmController@destroy');
+Route::get('/alarm/{device_id}/{id}','AlarmController@getAlarm');
+Route::get('/list/{device_id}','AlarmController@getList');
