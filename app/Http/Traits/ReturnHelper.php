@@ -30,7 +30,7 @@ trait ReturnHelper
     /*
     *   @var Int
     */
-    protected function returnKeyJson(Int $key, Array $list)
+    protected function returnKeyJson($key, Array $list)
     {
         if (is_int($key)) {
             return Response::json(['status'=>'success', 'data'=>$list[$key]]);
